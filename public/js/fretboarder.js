@@ -45,7 +45,7 @@
 		}
 
 		// Dots
-		var frets = [3, 5, 7, 9, 12];
+		var frets = [ 3, 5, 7, 9 ];
 		for (var i = 0; i < frets.length; ++i) {
 			var fret = frets[i];
 			var p = dotPosition(2.5, fret);
@@ -54,6 +54,17 @@
 			});
 			svg.appendChild(dot);
 		}
+		// 12th fret gets 2 dots
+		var p1 = dotPosition(1.5, 12);
+		var p2 = dotPosition(3.5, 12);
+		var dot1 = makeSVG('circle', {
+			cx: p1.x, cy: p1.y, r: '12', stroke: 'rgb(0, 0, 0)'
+		});
+		var dot2 = makeSVG('circle', {
+			cx: p2.x, cy: p2.y, r: '12', stroke: 'rgb(0, 0, 0)'
+		});
+		svg.appendChild(dot1);
+		svg.appendChild(dot2);
 
 		svg.appendChild(makeSVG('g'));
 
