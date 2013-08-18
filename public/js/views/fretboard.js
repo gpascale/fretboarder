@@ -91,22 +91,56 @@
 			return { x: x, y: y };
 		},
 
-		showDots: function() {
+		_dotColor: function(degree) {
+			return [ 'red', 'brown', 'aqua', 'green', 'blue', 'orange',
+					 'black', 'darkorchid', 'darkgreen', 'yellow',
+					 'palevioletred', 'springgreen' ][degree];
+		},
+
+		showDots: function(key, degrees) {
+			var data = [ ];
+			var degreeSet = { };
+			for (var i = 0; i < degrees.length; ++i) {
+				var note = (key + degrees[i]) % 12;
+				degreeSet[note] = 1;
+			}
+			var offsets = [24, 19, 15, 10, 5, 0];
+			for (var string = 0; string < 6; ++string) {
+				for (var fret = 0; fret < 15; ++fret) {
+					var note = (offsets[string] + fret) % 12;
+					if (degreeSet[note])
+						data.push([ string, fret ]);
+				}
+			}
+
 			var self = this;
-			var data = [ [1, 5], [2, 2], [3, 8], [5, 12], [0, 8] ];
 			var vis = d3.select('svg g');
-			vis.selectAll('circle')
-			.data(data)
-			.enter()
+			var sel = vis.selectAll('circle').data(data, function(d) {
+				return d[0] * 24 + d[1];
+			});
+			
+			sel
+			.transition()
+			.duration(1000)
+			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
+	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
+	 		.style("fill", function(d) { return self._dotColor(((offsets[d[0]] + d[1]) + 12 - key) % 12); });
+
+			sel.exit()
+			.transition()
+			.duration(1000)
+			.style('opacity', 0)
+			.remove();
+
+			sel.enter()
 			.append('circle')
-			.style("fill", "purple")
+			.style("fill", function(d) { return self._dotColor(((offsets[d[0]] + d[1]) + 12 - key) % 12); })
 			.attr('opacity', 0)
 			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
 	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
 			.attr("r", 20)
 			.transition()
-			.delay(300)
-			.duration(500)
+			.duration(1000)
 			.style("opacity", 1)
 			.attr("class", "note");
 		}

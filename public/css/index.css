@@ -8,3 +8,7 @@ svg {
 	margin: 0 auto;
 	text-align: center;
 }
+
+.dropdown {
+	display: inline-block;
+}

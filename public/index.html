@@ -4,17 +4,33 @@
     <script type="text/template" id="fretboardTemplate">
     </script>
 
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-		<link href="css/fretboarder.css" rel="stylesheet" type="text/css">
+    <!-- css -->
+    <link rel="stylesheet" href="ext/bootstrap/css/bootstrap.min.css">
+	<link href="css/index.css" rel="stylesheet" type="text/css">
+	
+    <!-- templates -->
+    <script src="templates/dropdown.tmpl" type="text/template" id="dropdownTemplate">
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="selected"></span>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- dropdown menu links -->
+            </ul>
+        </div>
+    </script>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="http://underscorejs.org/underscore-min.js"></script>
-    <script src="http://backbonejs.org/backbone-min.js"></script>
+    <!-- js -->
+    <script src="ext/js/jquery.min-1.10.2.js"></script>
+    <script src="ext/bootstrap/js/bootstrap.min.js"></script>
+	<script src="ext/js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="ext/js/underscore-min-1.5.1.js"></script>
+    <script src="ext/js/backbone-min-1.0.0.js"></script>
     <script src="js/views/fretboard.js"></script>
-		<script src="js/fretboarder.js"></script>
+    <script src="js/views/dropdown.js"></script>
+	<script src="js/index.js"></script>
+
 	</head>
 	<body>
     <div id="content">

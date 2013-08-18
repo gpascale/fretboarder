@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"_fre",
+				"_fretboardHeight"
+			],
+			[
 				"app",
 				"appendChild"
 			],
@@ -215,7 +219,15 @@
 			"file": "public/index.html",
 			"settings":
 			{
-				"buffer_size": 2314,
+				"buffer_size": 902,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/views/fretboard.js",
+			"settings":
+			{
+				"buffer_size": 3405,
 				"line_ending": "Unix"
 			}
 		},
@@ -223,7 +235,7 @@
 			"file": "public/js/fretboarder.js",
 			"settings":
 			{
-				"buffer_size": 2868,
+				"buffer_size": 303,
 				"line_ending": "Unix"
 			}
 		},
@@ -231,7 +243,7 @@
 			"file": "public/css/fretboarder.css",
 			"settings":
 			{
-				"buffer_size": 55,
+				"buffer_size": 123,
 				"line_ending": "Unix"
 			}
 		}
@@ -300,6 +312,7 @@
 	},
 	"file_history":
 	[
+		"/Users/greg/gitclients/fretboarder/public/templates/fretboard.tmpl",
 		"/Users/greg/gitclients/clipboard/src/node/apps/clipboard/assets-pages.js",
 		"/Users/greg/gitclients/clipboard/src/node/apps/clipboard/views/landing_originalCarousel.ejs",
 		"/Users/greg/gitclients/clipboard/addons/userscripts/clipboard.js",
@@ -338,6 +351,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dotPosition",
+			"_",
 			"fretboardHeight",
 			"fretboardWidth",
 			"fretboardHeight",
@@ -452,7 +467,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -538,20 +553,22 @@
 					"file": "public/index.html",
 					"settings":
 					{
-						"buffer_size": 2314,
+						"buffer_size": 902,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								363,
-								385
+								885,
+								885
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -561,18 +578,18 @@
 				},
 				{
 					"buffer": 4,
-					"file": "public/js/fretboarder.js",
+					"file": "public/js/views/fretboard.js",
 					"settings":
 					{
-						"buffer_size": 2868,
+						"buffer_size": 3405,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								437,
-								437
+								586,
+								586
 							]
 						],
 						"settings":
@@ -580,25 +597,52 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 856.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "public/css/fretboarder.css",
+					"file": "public/js/fretboarder.js",
 					"settings":
 					{
-						"buffer_size": 55,
+						"buffer_size": 303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5,
-								5
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/css/fretboarder.css",
+					"settings":
+					{
+						"buffer_size": 123,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
 							]
 						],
 						"settings":
@@ -659,6 +703,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"fretboar",
+				"public/js/fretboarder.js"
+			],
+			[
+				"fretboarder",
+				"public/js/fretboarder.js"
+			],
 			[
 				"shutdown.e",
 				"src/node/apps/clipboard/views/shutdown.ejs"
@@ -1162,14 +1214,6 @@
 			[
 				"unveri",
 				"src/www/templates/messages/unverifiedemailmessage.tmpl"
-			],
-			[
-				"message-v",
-				"src/www/js/views/systemmessage-view.js"
-			],
-			[
-				"unv",
-				"build/www/templates/messages/unverifiedemailmessage.tmpl"
 			]
 		],
 		"width": 0.0
