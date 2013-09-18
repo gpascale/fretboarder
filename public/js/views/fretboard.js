@@ -9,6 +9,8 @@
 		return el;
 	};
 
+	var offsets = [24, 19, 15, 10, 5, 0];
+
 	app.FretboardView = Backbone.View.extend(/** @lends LightboxView.prototype */ {
         template: _.template($("#fretboardTemplate").html()),
         className: 'fretboardView',
@@ -97,22 +99,7 @@
 					 'palevioletred', 'springgreen' ][degree];
 		},
 
-		showDots: function(key, degrees) {
-			var data = [ ];
-			var degreeSet = { };
-			for (var i = 0; i < degrees.length; ++i) {
-				var note = (key + degrees[i]) % 12;
-				degreeSet[note] = 1;
-			}
-			var offsets = [24, 19, 15, 10, 5, 0];
-			for (var string = 0; string < 6; ++string) {
-				for (var fret = 0; fret < 15; ++fret) {
-					var note = (offsets[string] + fret) % 12;
-					if (degreeSet[note])
-						data.push([ string, fret ]);
-				}
-			}
-
+		_setData: function(data) {
 			var self = this;
 			var vis = d3.select('svg g');
 			var sel = vis.selectAll('circle').data(data, function(d) {
@@ -124,7 +111,7 @@
 			.duration(1000)
 			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
 	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
-	 		.style("fill", function(d) { return self._dotColor(((offsets[d[0]] + d[1]) + 12 - key) % 12); });
+	 		.style("fill", function(d) { return d[2] ? d[2] : '#000'; });
 
 			sel.exit()
 			.transition()
@@ -134,7 +121,7 @@
 
 			sel.enter()
 			.append('circle')
-			.style("fill", function(d) { return self._dotColor(((offsets[d[0]] + d[1]) + 12 - key) % 12); })
+			.style("fill", function(d) { return d[2] ? d[2] : '#000'; })
 			.attr('opacity', 0)
 			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
 	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
@@ -143,6 +130,43 @@
 			.duration(1000)
 			.style("opacity", 1)
 			.attr("class", "note");
+		},
+
+		showKeyDegrees: function(key, degrees) {
+			if (key == null)
+				key = 0;
+			if (degrees == null)
+				degrees = [ ];
+			var data = [ ];
+			var degreeSet = { };
+			for (var i = 0; i < degrees.length; ++i) {
+				var note = (key + degrees[i]) % 12;
+				degreeSet[note] = 1;
+			}
+			
+			for (var string = 0; string < 6; ++string) {
+				for (var fret = 0; fret < 15; ++fret) {
+					var note = (offsets[string] + fret) % 12;
+					if (degreeSet[note]) {
+						var color = this._dotColor(((offsets[string] + fret) + 12 - key) % 12)
+						data.push([ string, fret, color ]);
+					}
+				}
+			}
+
+			this._setData(data);
+		},
+
+		showDots: function(dots) {
+			if (dots == null)
+				dots = [ ];
+			if (dots.length == 2 && typeof dots[0] == 'number')
+				dots = [ [ dots[0], dots[1] ] ];
+			this._setData(dots);
+		},
+
+		reset: function() {
+			showKeyDegrees();
 		}
     });
 }());

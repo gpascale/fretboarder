@@ -2,8 +2,6 @@
 
 	var app = window.FRETBOARDER = window.FRETBOARDER || { };
 
-	var foo = $("#dropdownTemplate");
-
 	app.DropdownView = Backbone.View.extend({
         template: _.template($("#dropdownTemplate").html()),
         className: 'dropdownView',

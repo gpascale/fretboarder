@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"_se",
+				"_selectedDegrees"
+			],
+			[
+				"freb",
+				"fretboardTemplate"
+			],
+			[
 				"_fre",
 				"_fretboardHeight"
 			],
@@ -219,7 +231,30 @@
 			"file": "public/index.html",
 			"settings":
 			{
-				"buffer_size": 902,
+				"buffer_size": 1282,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/views/dropdown.js",
+			"settings":
+			{
+				"buffer_size": 1358,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/templates/dropdown.tmpl",
+			"settings":
+			{
+				"buffer_size": 231,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -227,23 +262,33 @@
 			"file": "public/js/views/fretboard.js",
 			"settings":
 			{
-				"buffer_size": 3405,
+				"buffer_size": 4470,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/fretboarder.js",
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Package Control 2.0.0 Changelog:\n  \n  \n  Today I'd like to announce two big milestones:\n  \n   - Package Control 2.0 for ST2 and ST3\n   - A new Package Control website at https://sublime.wbond.net\n  \n  The full announcement about the PC 2.0 release is available on the news page at\n  https://sublime.wbond.net/news.\n  \n  If you are running the \"testing\" version of Package Control (1.6.9 - 1.6.11),\n  you will likely need to restart Sublime Text before Package Control will work\n  properly.\n  \n  \n  Giving Back\n  \n  Part of the new Package Control website is in-depth information about each\n  package. The new package pages include a link where you can give a tip to the\n  developer/maintainer of your favorite packages.\n  \n  The donate links go to https://www.gittip.com, which is building an excellent,\n  and open platform for users to say \"thank you\" to open source developers. It\n  is possible to give a small amount each week, such as $0.25, however these small\n  amounts multiplied by the large size of the community can be a big thank you!\n  \n  One of the less glamorous jobs involved with making Package Control happen is\n  reviewing and giving package developers feedback before adding their packages\n  to the default channel. The follow contributors deserve a big thank you:\n  \n  FichteFoll - https://www.gittip.com/FichteFoll/\n  joneshf    - https://www.gittip.com/on/github/joneshf/\n  sentience  - https://www.gittip.com/on/github/sentience/\n  \n  Finally, I'm looking to raise some money to obtain a Mac Mini for the purposes\n  of supporting ST3 on OS X and a license for a Windows 8 VM. If you are inclined\n  to donate to those, or want to just buy me a beer, check out:\n  \n  https://sublime.wbond.net/say_thanks\n  \n  \n  Notable Features\n  \n   - A new Windows downloader that uses WinINet and should provide much better\n     proxy support\n  \n   - Using operating system-supplied SSL CA certs on all platforms, with a\n     deprecated fallback to certificates served through the channel\n  \n   - Proxy server fixes for OS X\n  \n   - A completely revamped channel and repository system with support for more\n     information about packages including labels; readme, issues, donate and buy\n     URLs; tag-based releases; platform targetting without a custom packages.json\n     file; and Sublime Text version targetting\n  \n   - Support for installing via .sublime-package files in ST3, which allows users\n     to easily override specific files from the package. Package developers who\n     need a loose folder of files may include a .no-sublime-package file in their\n     repo.\n  \n   - In the coming days the new Package Control website will be released as open\n     source on GitHub\n  \n",
 			"settings":
 			{
-				"buffer_size": 303,
+				"buffer_size": 2779,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"file": "public/js/index.js",
+			"settings":
+			{
+				"buffer_size": 1646,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/css/fretboarder.css",
+			"file": "public/css/index.css",
 			"settings":
 			{
-				"buffer_size": 123,
+				"buffer_size": 220,
 				"line_ending": "Unix"
 			}
 		}
@@ -467,7 +512,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -553,21 +598,21 @@
 					"file": "public/index.html",
 					"settings":
 					{
-						"buffer_size": 902,
+						"buffer_size": 1282,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								885,
-								885
+								157,
+								157
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -578,23 +623,25 @@
 				},
 				{
 					"buffer": 4,
-					"file": "public/js/views/fretboard.js",
+					"file": "public/js/views/dropdown.js",
 					"settings":
 					{
-						"buffer_size": 3405,
+						"buffer_size": 1358,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								586,
-								586
+								857,
+								857
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -604,24 +651,23 @@
 				},
 				{
 					"buffer": 5,
-					"file": "public/js/fretboarder.js",
+					"file": "public/templates/dropdown.tmpl",
 					"settings":
 					{
-						"buffer_size": 303,
+						"buffer_size": 231,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								174,
-								174
+								122,
+								91
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -631,18 +677,124 @@
 				},
 				{
 					"buffer": 6,
-					"file": "public/css/fretboarder.css",
 					"settings":
 					{
-						"buffer_size": 123,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								120,
-								120
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/greg/gitclients/fretboarder/public/templates",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/js/views/fretboard.js",
+					"settings":
+					{
+						"buffer_size": 4470,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								464
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 68.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"settings":
+					{
+						"buffer_size": 2779,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								285,
+								285
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "public/js/index.js",
+					"settings":
+					{
+						"buffer_size": 1646,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								226,
+								226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 1.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "public/css/index.css",
+					"settings":
+					{
+						"buffer_size": 220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
 							]
 						],
 						"settings":
@@ -703,6 +855,50 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"index.",
+				"public/js/index.js"
+			],
+			[
+				"fretbo",
+				"public/js/views/fretboard.js"
+			],
+			[
+				"index.c",
+				"public/css/index.css"
+			],
+			[
+				"dropdo",
+				"public/templates/dropdown.tmpl"
+			],
+			[
+				"dropd",
+				"public/js/views/dropdown.js"
+			],
+			[
+				"fretb",
+				"public/js/views/fretboard.js"
+			],
+			[
+				"drop",
+				"public/js/views/dropdown.js"
+			],
+			[
+				"index",
+				"public/js/index.js"
+			],
+			[
+				"inde",
+				"public/js/index.js"
+			],
+			[
+				"",
+				"public/js/views/fretboard.js"
+			],
+			[
+				"index.j",
+				"public/js/index.js"
+			],
 			[
 				"fretboar",
 				"public/js/fretboarder.js"
@@ -854,10 +1050,6 @@
 			[
 				"profile.",
 				"src/www/js/profile.js"
-			],
-			[
-				"",
-				"src/node/exporter.js"
 			],
 			[
 				"profile.j",
@@ -1174,46 +1366,6 @@
 			[
 				"security",
 				"build/node/apps/admin/security.js"
-			],
-			[
-				"shutd",
-				"src/www/js/views/shutdownmessage-view.js"
-			],
-			[
-				"getip",
-				"src/www/js/views/getiphoneappmessage-view.js"
-			],
-			[
-				"clipboard.mobil",
-				"src/www/js/clipboard.mobile.js"
-			],
-			[
-				"clipboard.less",
-				"src/www/css/clipboard.less"
-			],
-			[
-				"mobile",
-				"src/www/css/mobile.less"
-			],
-			[
-				"variab",
-				"src/www/css/defaults/variables-common.less"
-			],
-			[
-				"variable",
-				"src/www/css/bootstrap/variables.less"
-			],
-			[
-				"mobile.le",
-				"src/www/css/mobile.less"
-			],
-			[
-				"clipboard.le",
-				"src/www/css/clipboard.less"
-			],
-			[
-				"unveri",
-				"src/www/templates/messages/unverifiedemailmessage.tmpl"
 			]
 		],
 		"width": 0.0

@@ -9,7 +9,7 @@
 	<link href="css/index.css" rel="stylesheet" type="text/css">
 	
     <!-- templates -->
-    <script src="templates/dropdown.tmpl" type="text/template" id="dropdownTemplate">
+    <script type="text/template" id="dropdownTemplate">
         <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                 <span class="selected"></span>
@@ -21,21 +21,51 @@
         </div>
     </script>
 
+    <script type="text/template" id="quizButtonsTemplate">
+        <div class="quizButtons">
+            <button class="btn">R</button>
+            <button class="btn">b9</button>
+            <button class="btn">9</button>
+            <button class="btn">b3 / #9</button>
+            <button class="btn">3</button>
+            <button class="btn">4 / 11</button>
+            <button class="btn">#11 / b5</button>
+            <button class="btn">5</button>
+            <button class="btn">#5 / b13</button>
+            <button class="btn">13</button>
+            <button class="btn">b7</button>
+            <button class="btn">7</button>
+        </div>
+    </script>
+
     <!-- js -->
     <script src="ext/js/jquery.min-1.10.2.js"></script>
     <script src="ext/bootstrap/js/bootstrap.min.js"></script>
 	<script src="ext/js/d3.v3.min.js" charset="utf-8"></script>
     <script src="ext/js/underscore-min-1.5.1.js"></script>
     <script src="ext/js/backbone-min-1.0.0.js"></script>
+    <script src="js/common.js"></script>
     <script src="js/views/fretboard.js"></script>
     <script src="js/views/dropdown.js"></script>
+    <script src="js/freeplay.js"></script>
+    <script src="js/intervalQuiz.js"></script>
 	<script src="js/index.js"></script>
 
 	</head>
-	<body>
+    <body>
+      <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="#">Fretboarder</a>
+            <ul class="nav">
+              <li class="active"><a href="#">Free Play</a></li>
+              <li><a href="#">Interval Quiz</a></li>
+          </ul>
+      </div>
+    </div>
     <div id="content">
-      <h1>Fretboarder!</h1>
-      <div id="fretboardContainer"></div>
+        <div id="headerContainer"></div>
+        <div id="fretboardContainer"></div>
+        <div id="footerContainer"></div>
     </div>
 	</body>
 </html>

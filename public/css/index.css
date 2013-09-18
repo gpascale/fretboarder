@@ -5,10 +5,25 @@ svg {
 
 #content {
 	width: 1000px;
-	margin: 0 auto;
+	margin: 0 50px;
 	text-align: center;
 }
 
-.dropdown {
+.dropdownView {
+	margin: 10px;
 	display: inline-block;
+}
+
+.fretboardView {
+	text-align: left;
+}
+
+.quizButtons {
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.quizButtons .btn {
+	width: 80px;
+	margin: 4px;
 }
