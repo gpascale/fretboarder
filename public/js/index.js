@@ -17,6 +17,9 @@
 				case 1:
 				    app.showIntervalQuiz();
 				    break;
+				case 2:
+					app.showNoteNameQuiz();
+					break;
 			}
 		});
 

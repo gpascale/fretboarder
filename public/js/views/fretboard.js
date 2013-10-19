@@ -14,6 +14,9 @@
 	app.FretboardView = Backbone.View.extend(/** @lends LightboxView.prototype */ {
         template: _.template($("#fretboardTemplate").html()),
         className: 'fretboardView',
+        events: {
+        	'click': '_onClick'
+        },
 
         _fretboardWidth: 800,
 		_fretboardHeight: 600,
@@ -85,6 +88,43 @@
 			this.$el.append($(svg));
   		},
 
+  		showKeyDegrees: function(key, degrees) {
+			if (key == null)
+				key = 0;
+			if (degrees == null)
+				degrees = [ ];
+			var data = [ ];
+			var degreeSet = { };
+			for (var i = 0; i < degrees.length; ++i) {
+				var note = (key + degrees[i]) % 12;
+				degreeSet[note] = 1;
+			}
+			
+			for (var string = 0; string < 6; ++string) {
+				for (var fret = 0; fret < 15; ++fret) {
+					var note = (offsets[string] + fret) % 12;
+					if (degreeSet[note]) {
+						var color = this._dotColor(((offsets[string] + fret) + 12 - key) % 12)
+						data.push([ string, fret, color ]);
+					}
+				}
+			}
+
+			this._setData(data);
+		},
+
+		showDots: function(dots) {
+			if (dots == null)
+				dots = [ ];
+			if (dots.length == 2 && typeof dots[0] == 'number')
+				dots = [ [ dots[0], dots[1] ] ];
+			this._setData(dots);
+		},
+
+		reset: function() {
+			showKeyDegrees();
+		},
+
 		_dotPosition: function(string, fret) {
 			var fretDistance = (this._fretboardWidth - this._fretWidth) / 14;
 			var stringDistance = (this._fretboardHeight - this._stringWidth) / 5;
@@ -132,41 +172,24 @@
 			.attr("class", "note");
 		},
 
-		showKeyDegrees: function(key, degrees) {
-			if (key == null)
-				key = 0;
-			if (degrees == null)
-				degrees = [ ];
-			var data = [ ];
-			var degreeSet = { };
-			for (var i = 0; i < degrees.length; ++i) {
-				var note = (key + degrees[i]) % 12;
-				degreeSet[note] = 1;
-			}
-			
+		_onClick: function(e) {
+			var x = e.offsetX - this.$('svg').offset().left;
+			var y = e.offsetY - this.$('svg').offset().top;
+			var best = [ -1, -1, 10000000 ];
 			for (var string = 0; string < 6; ++string) {
 				for (var fret = 0; fret < 15; ++fret) {
-					var note = (offsets[string] + fret) % 12;
-					if (degreeSet[note]) {
-						var color = this._dotColor(((offsets[string] + fret) + 12 - key) % 12)
-						data.push([ string, fret, color ]);
+					var center = this._dotPosition(string, fret);
+					var dist = Math.sqrt((x - center.x) * (x - center.x) +
+										 (y - center.y) * (y - center.y));
+					if (dist < best[2]) {						
+						best[0] = string;
+						best[1] = fret;
+						best[2] = dist;
 					}
 				}
 			}
-
-			this._setData(data);
-		},
-
-		showDots: function(dots) {
-			if (dots == null)
-				dots = [ ];
-			if (dots.length == 2 && typeof dots[0] == 'number')
-				dots = [ [ dots[0], dots[1] ] ];
-			this._setData(dots);
-		},
-
-		reset: function() {
-			showKeyDegrees();
+			if (best[2] < 50)
+				this.trigger('clicked', { string: best[0], fret: best[1] });
 		}
     });
 }());
