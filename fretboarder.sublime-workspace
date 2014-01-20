@@ -220,10 +220,21 @@
 			}
 		},
 		{
+			"contents": "",
 			"file": "/Users/greg/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 63,
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fretboarder.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
 				"line_ending": "Unix"
 			}
 		},
@@ -231,7 +242,7 @@
 			"file": "public/index.html",
 			"settings":
 			{
-				"buffer_size": 1282,
+				"buffer_size": 2514,
 				"line_ending": "Unix"
 			}
 		},
@@ -239,7 +250,18 @@
 			"file": "public/js/views/dropdown.js",
 			"settings":
 			{
-				"buffer_size": 1358,
+				"buffer_size": 1322,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "public/js/views/noteQuiz.js",
+			"file_size": 0,
+			"file_write_time": 1382140824000000,
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -259,14 +281,6 @@
 			}
 		},
 		{
-			"file": "public/js/views/fretboard.js",
-			"settings":
-			{
-				"buffer_size": 4470,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Package Control 2.0.0 Changelog:\n  \n  \n  Today I'd like to announce two big milestones:\n  \n   - Package Control 2.0 for ST2 and ST3\n   - A new Package Control website at https://sublime.wbond.net\n  \n  The full announcement about the PC 2.0 release is available on the news page at\n  https://sublime.wbond.net/news.\n  \n  If you are running the \"testing\" version of Package Control (1.6.9 - 1.6.11),\n  you will likely need to restart Sublime Text before Package Control will work\n  properly.\n  \n  \n  Giving Back\n  \n  Part of the new Package Control website is in-depth information about each\n  package. The new package pages include a link where you can give a tip to the\n  developer/maintainer of your favorite packages.\n  \n  The donate links go to https://www.gittip.com, which is building an excellent,\n  and open platform for users to say \"thank you\" to open source developers. It\n  is possible to give a small amount each week, such as $0.25, however these small\n  amounts multiplied by the large size of the community can be a big thank you!\n  \n  One of the less glamorous jobs involved with making Package Control happen is\n  reviewing and giving package developers feedback before adding their packages\n  to the default channel. The follow contributors deserve a big thank you:\n  \n  FichteFoll - https://www.gittip.com/FichteFoll/\n  joneshf    - https://www.gittip.com/on/github/joneshf/\n  sentience  - https://www.gittip.com/on/github/sentience/\n  \n  Finally, I'm looking to raise some money to obtain a Mac Mini for the purposes\n  of supporting ST3 on OS X and a license for a Windows 8 VM. If you are inclined\n  to donate to those, or want to just buy me a beer, check out:\n  \n  https://sublime.wbond.net/say_thanks\n  \n  \n  Notable Features\n  \n   - A new Windows downloader that uses WinINet and should provide much better\n     proxy support\n  \n   - Using operating system-supplied SSL CA certs on all platforms, with a\n     deprecated fallback to certificates served through the channel\n  \n   - Proxy server fixes for OS X\n  \n   - A completely revamped channel and repository system with support for more\n     information about packages including labels; readme, issues, donate and buy\n     URLs; tag-based releases; platform targetting without a custom packages.json\n     file; and Sublime Text version targetting\n  \n   - Support for installing via .sublime-package files in ST3, which allows users\n     to easily override specific files from the package. Package developers who\n     need a loose folder of files may include a .no-sublime-package file in their\n     repo.\n  \n   - In the coming days the new Package Control website will be released as open\n     source on GitHub\n  \n",
 			"settings":
 			{
@@ -280,7 +294,7 @@
 			"file": "public/js/index.js",
 			"settings":
 			{
-				"buffer_size": 1646,
+				"buffer_size": 660,
 				"line_ending": "Unix"
 			}
 		},
@@ -288,7 +302,31 @@
 			"file": "public/css/index.css",
 			"settings":
 			{
-				"buffer_size": 220,
+				"buffer_size": 325,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/noteNameQuiz.js",
+			"settings":
+			{
+				"buffer_size": 876,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/gpascale/gitclients/combinator-website/combinator-website.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/intervalQuiz.js",
+			"settings":
+			{
+				"buffer_size": 1600,
 				"line_ending": "Unix"
 			}
 		}
@@ -357,6 +395,7 @@
 	},
 	"file_history":
 	[
+		"/Users/gpascale/gitclients/fretboarder/public/js/views/fretboard.js",
 		"/Users/greg/gitclients/fretboarder/public/templates/fretboard.tmpl",
 		"/Users/greg/gitclients/clipboard/src/node/apps/clipboard/assets-pages.js",
 		"/Users/greg/gitclients/clipboard/src/node/apps/clipboard/views/landing_originalCarousel.ejs",
@@ -396,6 +435,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"makesvg",
+			"x",
+			"fretboarder",
 			"dotPosition",
 			"_",
 			"fretboardHeight",
@@ -512,7 +554,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -572,15 +614,15 @@
 					"file": "/Users/greg/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 					"settings":
 					{
-						"buffer_size": 63,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								18,
-								18
+								0,
+								0
 							]
 						],
 						"settings":
@@ -595,25 +637,23 @@
 				},
 				{
 					"buffer": 3,
-					"file": "public/index.html",
+					"file": "fretboarder.sublime-project",
 					"settings":
 					{
-						"buffer_size": 1282,
+						"buffer_size": 45,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								157
+								45,
+								45
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -623,18 +663,46 @@
 				},
 				{
 					"buffer": 4,
-					"file": "public/js/views/dropdown.js",
+					"file": "public/index.html",
 					"settings":
 					{
-						"buffer_size": 1358,
+						"buffer_size": 2514,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								857,
-								857
+								2006,
+								2006
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 249.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/js/views/dropdown.js",
+					"settings":
+					{
+						"buffer_size": 1322,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -650,7 +718,33 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
+					"file": "public/js/views/noteQuiz.js",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "public/templates/dropdown.tmpl",
 					"settings":
 					{
@@ -676,7 +770,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"settings":
 					{
 						"buffer_size": 0,
@@ -702,34 +796,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "public/js/views/fretboard.js",
-					"settings":
-					{
-						"buffer_size": 4470,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								464,
-								464
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 68.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
+					"buffer": 9,
 					"settings":
 					{
 						"buffer_size": 2779,
@@ -746,6 +813,8 @@
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
@@ -755,19 +824,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "public/js/index.js",
 					"settings":
 					{
-						"buffer_size": 1646,
+						"buffer_size": 660,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								226,
-								226
+								392,
+								392
 							]
 						],
 						"settings":
@@ -775,31 +844,112 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 1.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "public/css/index.css",
 					"settings":
 					{
-						"buffer_size": 220,
+						"buffer_size": 325,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								140,
-								140
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "public/js/noteNameQuiz.js",
+					"settings":
+					{
+						"buffer_size": 876,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								852,
+								852
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/Users/gpascale/gitclients/combinator-website/combinator-website.sublime-project",
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								34
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "public/js/intervalQuiz.js",
+					"settings":
+					{
+						"buffer_size": 1600,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								404,
+								278
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -856,6 +1006,26 @@
 		"selected_items":
 		[
 			[
+				"noten",
+				"public/js/noteNameQuiz.js"
+			],
+			[
+				"fret",
+				"public/js/views/fretboard.js"
+			],
+			[
+				"fretb",
+				"public/js/views/fretboard.js"
+			],
+			[
+				"note",
+				"public/js/noteNameQuiz.js"
+			],
+			[
+				"index",
+				"public/index.html"
+			],
+			[
 				"index.",
 				"public/js/index.js"
 			],
@@ -876,16 +1046,8 @@
 				"public/js/views/dropdown.js"
 			],
 			[
-				"fretb",
-				"public/js/views/fretboard.js"
-			],
-			[
 				"drop",
 				"public/js/views/dropdown.js"
-			],
-			[
-				"index",
-				"public/js/index.js"
 			],
 			[
 				"inde",
@@ -1354,18 +1516,6 @@
 			[
 				"clips-view",
 				"src/www/js/views/clips-view.js"
-			],
-			[
-				"welcomepage-",
-				"src/www/js/views/welcomepage-view.js"
-			],
-			[
-				"templ",
-				"src/node/templates.js"
-			],
-			[
-				"security",
-				"build/node/apps/admin/security.js"
 			]
 		],
 		"width": 0.0
