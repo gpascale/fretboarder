@@ -74,7 +74,7 @@ this["FRETBOARDER"]["Templates"]["dropdown"] = function(data) {var __t, __p = ''
 	var _selectedDegrees = [ 0 ];
 
 	app.showFreeplay = function() {
-		var fretboard = app.fretboard;
+		var fretboard = app.fretboardView;
 		$('#footerContainer').empty();
 
 		// Keys dropdown
@@ -165,7 +165,7 @@ this["FRETBOARDER"]["Templates"]["dropdown"] = function(data) {var __t, __p = ''
 	var _numTotal = 0;
 
 	app.showIntervalQuiz = function() {
-		var fretboard = app.fretboard;
+		var fretboard = app.fretboardView;
 		$('#headerContainer').empty();
 		$('#footerContainer').empty();
 		fretboard.showKeyDegrees();

@@ -34,22 +34,24 @@ module.exports = function(grunt) {
     // Js / Html / External client stuff
     /*************************************************************************/
     grunt.loadNpmTasks('grunt-contrib-copy');
-    var jsRoot = 'src/js/';
-    var jsPattern = '**/*.js';
-    var htmlRoot = 'src/html/';
-    var htmlPattern = '**/*.html';
     grunt.config('copy', {
         html: {
             expand: true,
             cwd: 'src/html',
             src: '**',
-            dest: 'public/html'
+            dest: 'public'
         },
         bootstrap: {
             expand: true,
             cwd: 'src/ext/bootstrap/css',
             src: 'bootstrap.css',
             dest: 'public/css'
+        },
+        cname: {
+            expand: true,
+            cwd: 'src',
+            src: 'CNAME',
+            dest: 'public/'
         }
     });
 

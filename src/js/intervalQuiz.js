@@ -11,7 +11,7 @@
 	var _numTotal = 0;
 
 	app.showIntervalQuiz = function() {
-		var fretboard = app.fretboard;
+		var fretboard = app.fretboardView;
 		$('#headerContainer').empty();
 		$('#footerContainer').empty();
 		fretboard.showKeyDegrees();

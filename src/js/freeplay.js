@@ -6,7 +6,7 @@
 	var _selectedDegrees = [ 0 ];
 
 	app.showFreeplay = function() {
-		var fretboard = app.fretboard;
+		var fretboard = app.fretboardView;
 		$('#footerContainer').empty();
 
 		// Keys dropdown
