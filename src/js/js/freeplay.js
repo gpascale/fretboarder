@@ -27,6 +27,7 @@
 			'Minor Triad Chord Tones' : [ 0, 3, 7 ],
 			'Augmented Triad Chord Tones' : [ 0, 4, 8 ],
 			'Diminished Triad Chord Tones' : [ 0, 3, 6],
+			'Twos, Fives and Ones': [ 0, 2, 7 ],
 			'Major 7 Chord Tones' : [ 0, 4, 7, 11 ],
 			'Dominant 7 Chord Tones' : [ 0, 4, 7, 10 ],
 			'Minor 7 Chord Tones' : [ 0, 3, 7, 10 ],

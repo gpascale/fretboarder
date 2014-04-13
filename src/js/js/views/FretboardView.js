@@ -11,11 +11,14 @@
 
 	var offsets = [24, 19, 15, 10, 5, 0];
 
-	app.FretboardView = Backbone.View.extend(/** @lends LightboxView.prototype */ {
-        template: _.template($("#fretboardTemplate").html()),
+	app.FretboardView = Marionette.ItemView.extend(/** @lends LightboxView.prototype */ {
+        template: window.FRETBOARDER.Templates.FretboardView,
         className: 'fretboardView',
         events: {
         	'click': '_onClick'
+        },
+        modelEvents: {
+        	'change': '_modelChanged'
         },
 
         _fretboardWidth: 800,
@@ -113,6 +116,10 @@
 			this._setData(data);
 		},
 
+		hasDot: function(string, fret) {
+
+		},
+
 		showDots: function(dots) {
 			if (dots == null)
 				dots = [ ];
@@ -146,30 +153,29 @@
 				return d[0] * 24 + d[1];
 			});
 			
-			sel
-			.transition()
-			.duration(1000)
-			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
-	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
-	 		.style("fill", function(d) { return d[2] ? d[2] : '#000'; });
+			sel.transition()
+				.duration(1000)
+				.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
+		 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
+		 		.style("fill", function(d) { return d[2] ? d[2] : '#000'; });
 
-			sel.exit()
-			.transition()
-			.duration(1000)
-			.style('opacity', 0)
-			.remove();
+				sel.exit()
+				.transition()
+				.duration(1000)
+				.style('opacity', 0)
+				.remove();
 
-			sel.enter()
-			.append('circle')
-			.style("fill", function(d) { return d[2] ? d[2] : '#000'; })
-			.attr('opacity', 0)
-			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
-	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
-			.attr("r", 20)
-			.transition()
-			.duration(1000)
-			.style("opacity", 1)
-			.attr("class", "note");
+				sel.enter()
+				.append('circle')
+				.style("fill", function(d) { return d[2] ? d[2] : '#000'; })
+				.attr('opacity', 0)
+				.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
+		 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
+				.attr("r", 20)
+				.transition()
+				.duration(1000)
+				.style("opacity", 1)
+				.attr("class", "note");
 		},
 
 		_onClick: function(e) {
@@ -190,6 +196,10 @@
 			}
 			if (best[2] < 50)
 				this.trigger('clicked', { string: best[0], fret: best[1] });
+		},
+
+		_modelChanged: function() {
+			console.log('model changed dude');
 		}
     });
 }());

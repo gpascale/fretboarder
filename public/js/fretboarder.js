@@ -1,10 +1,54 @@
 ;(function() {
-this["Fretboarder"] = this["Fretboarder"] || {};
-this["Fretboarder"]["Templates"] = this["Fretboarder"]["Templates"] || {};
+this["FRETBOARDER"] = this["FRETBOARDER"] || {};
+this["FRETBOARDER"]["Templates"] = this["FRETBOARDER"]["Templates"] || {};
 
-this["Fretboarder"]["Templates"]["dropdown"] = function(data) {var __t, __p = '', __e = _.escape;__p += '<div class="btn-group">\n\t<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">\n\t\t<span class="selected">E</span>\n\t\t<span class="caret"></span>\n\t</a>\n\t<ul class="dropdown-menu">\n\t\t<!-- dropdown menu links -->\n\t</ul>\n</div>';return __p};
+this["FRETBOARDER"]["Templates"]["FretboardView"] = function(data) {var __t, __p = '', __e = _.escape;__p += '';return __p};
 
-this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '', __e = _.escape;__p += '';return __p};
+this["FRETBOARDER"]["Templates"]["dropdown"] = function(data) {var __t, __p = '', __e = _.escape;__p += '<div class="btn-group">\n\t<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">\n\t\t<span class="selected">E</span>\n\t\t<span class="caret"></span>\n\t</a>\n\t<ul class="dropdown-menu">\n\t\t<!-- dropdown menu links -->\n\t</ul>\n</div>';return __p};
+})();
+(function() {
+(function() {
+
+    var app = window.FRETBOARDER = window.FRETBOARDER || { };
+
+    var MAXFRETS = 24;
+
+    app.Fretboard = Backbone.Model.extend({
+        defaults: function() {
+            return {
+                data: { }
+            }
+        },
+
+        setDot: function(string, fret, dotOrNot) {
+            this.setDots([[string, fret, dotOrNot]]);
+        },
+
+        setDots: function(tuples) { /* tuple form: [ string, fret, dotOrNot ] */
+            var self = this;
+            var data = $.extend(true, {}, this.get('data'));
+            _.each(tuples, function(tuple) {
+                var key = self._key(tuple[0], tuple[1]);
+                if (tuple[2])
+                    data[key] = 1;
+                else
+                    delete data[key];
+            });
+            debugger;
+            this.set('data', data);
+        },
+
+        getDot: function(string, fret) {
+            return this.get('data')[this._key(string, fret)];
+        },
+
+        _key: function(string, fret) {
+            return string * MAXFRETS + fret;
+        }
+    });
+
+}());
+
 })();
 (function() {
 (function() {
@@ -51,6 +95,7 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 			'Minor Triad Chord Tones' : [ 0, 3, 7 ],
 			'Augmented Triad Chord Tones' : [ 0, 4, 8 ],
 			'Diminished Triad Chord Tones' : [ 0, 3, 6],
+			'Twos, Fives and Ones': [ 0, 2, 7 ],
 			'Major 7 Chord Tones' : [ 0, 4, 7, 11 ],
 			'Dominant 7 Chord Tones' : [ 0, 4, 7, 10 ],
 			'Minor 7 Chord Tones' : [ 0, 3, 7, 10 ],
@@ -81,9 +126,9 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 	var app = window.FRETBOARDER = window.FRETBOARDER || { };
 
 	$(document).ready(function() {
-		var fretboard = app.fretboard = new app.FretboardView({ width: 800, height: 240 });
-		fretboard.render();
-		$('#fretboardContainer').append(fretboard.$el);
+		var fretboardView = app.fretboardView = new app.FretboardView({ model: new app.Fretboard(), width: 800, height: 240 });
+		fretboardView.render();
+		$('#fretboardContainer').append(fretboardView.$el);
 
 		$('.nav li a').on('click', function() {
 			$(this).parents('.nav').children().removeClass('active');
@@ -202,49 +247,6 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 
 	var app = window.FRETBOARDER = window.FRETBOARDER || { };
 
-	app.DropdownView = Backbone.View.extend({
-        template: _.template($("#dropdownTemplate").html()),
-        className: 'dropdownView',
-
-        _options: null,
-        _data: null,
-
-        initialize: function(options) {
-        	this._options = options;
-        },
-
-        render: function() {
-        	var self = this;
-                var data = this._options ? this._options.data : null;
-        	this.$el.html(this.template());
-        	if (this._options && this._options.values) {
-        		for (var i = 0; i < this._options.values.length; ++i) {
-        			this.$('.dropdown-menu').append('<li><a href="#">' + this._options.values[i] + '</a></li>');
-        		}
-                        this.$('.selected').html(this._options.values[0]);
-                        this.$('.selected').text(this._options.values[0]);
-        	}
-        	this.$el.on('click', 'li a', function() {
-        		self.$('.selected').html($(this).html());
-        		self.$('.selected').text($(this).html());
-                        var index = $(this).parent().index();
-                        var dataVal = data ? data[index] : index;
-        		self.trigger('selectionChanged', dataVal);
-        	});
-        },
-
-        remove: function() {
-
-        }
-	});
-
-}());
-})();
-(function() {
-(function() {
-
-	var app = window.FRETBOARDER = window.FRETBOARDER || { };
-
 	var makeSVG = function(tag, attrs) {
 		var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
 		for (var k in attrs)
@@ -254,11 +256,14 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 
 	var offsets = [24, 19, 15, 10, 5, 0];
 
-	app.FretboardView = Backbone.View.extend(/** @lends LightboxView.prototype */ {
-        template: _.template($("#fretboardTemplate").html()),
+	app.FretboardView = Marionette.ItemView.extend(/** @lends LightboxView.prototype */ {
+        template: window.FRETBOARDER.Templates.FretboardView,
         className: 'fretboardView',
         events: {
         	'click': '_onClick'
+        },
+        modelEvents: {
+        	'change': '_modelChanged'
         },
 
         _fretboardWidth: 800,
@@ -356,6 +361,10 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 			this._setData(data);
 		},
 
+		hasDot: function(string, fret) {
+
+		},
+
 		showDots: function(dots) {
 			if (dots == null)
 				dots = [ ];
@@ -389,30 +398,29 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 				return d[0] * 24 + d[1];
 			});
 			
-			sel
-			.transition()
-			.duration(1000)
-			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
-	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
-	 		.style("fill", function(d) { return d[2] ? d[2] : '#000'; });
+			sel.transition()
+				.duration(1000)
+				.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
+		 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
+		 		.style("fill", function(d) { return d[2] ? d[2] : '#000'; });
 
-			sel.exit()
-			.transition()
-			.duration(1000)
-			.style('opacity', 0)
-			.remove();
+				sel.exit()
+				.transition()
+				.duration(1000)
+				.style('opacity', 0)
+				.remove();
 
-			sel.enter()
-			.append('circle')
-			.style("fill", function(d) { return d[2] ? d[2] : '#000'; })
-			.attr('opacity', 0)
-			.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
-	 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
-			.attr("r", 20)
-			.transition()
-			.duration(1000)
-			.style("opacity", 1)
-			.attr("class", "note");
+				sel.enter()
+				.append('circle')
+				.style("fill", function(d) { return d[2] ? d[2] : '#000'; })
+				.attr('opacity', 0)
+				.attr("cx", function(d) { return self._dotPosition(d[0],d[1]).x; })
+		 		.attr("cy", function(d) { return self._dotPosition(d[0],d[1]).y; })
+				.attr("r", 20)
+				.transition()
+				.duration(1000)
+				.style("opacity", 1)
+				.attr("class", "note");
 		},
 
 		_onClick: function(e) {
@@ -433,6 +441,53 @@ this["Fretboarder"]["Templates"]["fretboard"] = function(data) {var __t, __p = '
 			}
 			if (best[2] < 50)
 				this.trigger('clicked', { string: best[0], fret: best[1] });
+		},
+
+		_modelChanged: function() {
+			console.log('model changed dude');
 		}
     });
+}());
+})();
+(function() {
+(function() {
+
+	var app = window.FRETBOARDER = window.FRETBOARDER || { };
+
+	app.DropdownView = Backbone.View.extend({
+        template: _.template($("#dropdownTemplate").html()),
+        className: 'dropdownView',
+
+        _options: null,
+        _data: null,
+
+        initialize: function(options) {
+        	this._options = options;
+        },
+
+        render: function() {
+        	var self = this;
+                var data = this._options ? this._options.data : null;
+        	this.$el.html(this.template());
+        	if (this._options && this._options.values) {
+        		for (var i = 0; i < this._options.values.length; ++i) {
+        			this.$('.dropdown-menu').append('<li><a href="#">' + this._options.values[i] + '</a></li>');
+        		}
+                        this.$('.selected').html(this._options.values[0]);
+                        this.$('.selected').text(this._options.values[0]);
+        	}
+        	this.$el.on('click', 'li a', function() {
+        		self.$('.selected').html($(this).html());
+        		self.$('.selected').text($(this).html());
+                        var index = $(this).parent().index();
+                        var dataVal = data ? data[index] : index;
+        		self.trigger('selectionChanged', dataVal);
+        	});
+        },
+
+        remove: function() {
+
+        }
+	});
+
 }());})();

@@ -3,9 +3,9 @@
 	var app = window.FRETBOARDER = window.FRETBOARDER || { };
 
 	$(document).ready(function() {
-		var fretboard = app.fretboard = new app.FretboardView({ width: 800, height: 240 });
-		fretboard.render();
-		$('#fretboardContainer').append(fretboard.$el);
+		var fretboardView = app.fretboardView = new app.FretboardView({ model: new app.Fretboard(), width: 800, height: 240 });
+		fretboardView.render();
+		$('#fretboardContainer').append(fretboardView.$el);
 
 		$('.nav li a').on('click', function() {
 			$(this).parents('.nav').children().removeClass('active');

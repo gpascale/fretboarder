@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     grunt.config('jst', {
         compile: {
             options: {
-                namespace: 'Fretboarder.Templates',
+                namespace: 'FRETBOARDER.Templates',
                 processName: function(filename) {
                     return path.basename(filename, '.tmpl');
                 },
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                    'src/ext/bootstrap/js/bootstrap.min.js',
                    'src/ext/js/underscore-min-1.5.1.js',
                    'src/ext/js/backbone-min.js',
-                   'src/ext/js/backbone.marionette.min.js',
+                   'src/ext/js/backbone.marionette.js',
                    'src/ext/js/d3.v3.min.js' ],
             dest: 'public/js/deps.js'
         },
@@ -142,6 +142,18 @@ module.exports = function(grunt) {
             }
         }
     });
+
+    /*************************************************************************/
+    // Github Pages                                                           
+    /*************************************************************************/
+
+    grunt.loadNpmTasks('grunt-gh-pages');
+    grunt.config('gh-pages', {
+        options: {
+            base: 'public'
+        },
+        src: ['**']
+    });
 
     grunt.registerTask('default', [ 'clean', 'less', 'copy', 'jst', 'concat' ]);
 };

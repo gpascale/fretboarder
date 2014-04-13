@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"_num",
+				"_numCorrect"
+			],
+			[
+				"_sel",
+				"_selectedKey"
+			],
+			[
 				"inlin",
 				"inline-block"
 			],
@@ -242,7 +250,11 @@
 			"file": "public/index.html",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 2514,
+=======
+				"buffer_size": 2413,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 				"line_ending": "Unix"
 			}
 		},
@@ -274,10 +286,45 @@
 			}
 		},
 		{
+<<<<<<< HEAD
+			"settings":
+			{
+				"buffer_size": 0,
+=======
+			"contents": "(function() {\n\n	var app = window.FRETBOARDER = window.FRETBOARDER || { };\n\n	var makeSVG = function(tag, attrs) {\n		var el= document.createElementNS('http://www.w3.org/2000/svg', tag);\n		for (var k in attrs)\n			el.setAttribute(k, attrs[k]);\n		return el;\n	};\n\n	var offsets = common.offsets;\n\n	app.FretboardView = Backbone.View.extend(/** @lends LightboxView.prototype */ {\n        template: _.template($(\"#fretboardTemplate\").html()),\n        className: 'fretboardView',\n\n        _fretboardWidth: 800,\n		_fretboardHeight: 600,\n		_nutWidth: 20,\n		_fretWidth: 10,\n		_stringWidth: 4,\n\n        initialize: function(options){\n   			if (options && options.width)\n   				this._fretboardWidth = options.width;\n   			if (options && options.height)\n   				this._fretboardHeight = options.height;\n  		},\n\n  		render: function(){\n    		this.$el.html(this.template());\n\n			var svg = $('<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"' +\n				'width=\"' + this._fretboardWidth + '\" height=\"' + this._fretboardHeight + '\"></svg>').get(0);\n\n			// Nut\n			var nut = makeSVG('line', { \n				x1: 10, y1: 0, x2: 10, y2: this._fretboardHeight, stroke: 'rgb(0, 0, 0)', 'stroke-width': 20 \n			});\n			svg.appendChild(nut);\n\n			// Frets\n			for (var i = 1; i < 15; ++i) {\n				var x = 0.5 * this._nutWidth + (this._fretboardWidth - this._fretWidth) / 14 * i;\n				var fret = makeSVG('line', {\n					x1: x, y1: 0, x2: x, y2: this._fretboardHeight, stroke: 'rgb(0, 0, 0)', 'stroke-width': this._fretWidth\n				});\n				svg.appendChild(fret);\n			}\n\n			// Strings\n			for (var i = 0; i < 6; ++i) {\n				var y = 0.5 * this._stringWidth + (this._fretboardHeight - this._stringWidth) / 5 * i;\n				var string = makeSVG('line', { \n					x1: 0, y1: y, x2: this._fretboardWidth, y2: y, stroke: 'rgb(150, 150, 150)', 'stroke-width': this._stringWidth\n				});\n				svg.appendChild(string);\n			}\n\n			// Dots\n			var frets = [ 3, 5, 7, 9 ];\n			for (var i = 0; i < frets.length; ++i) {\n				var fret = frets[i];\n				var p = this._dotPosition(2.5, fret);\n				var dot = makeSVG('circle', {\n					cx: p.x, cy: p.y, r: '12', stroke: 'rgb(0, 0, 0)'\n				});\n				svg.appendChild(dot);\n			}\n			// 12th fret gets 2 dots\n			var p1 = this._dotPosition(1.5, 12);\n			var p2 = this._dotPosition(3.5, 12);\n			var dot1 = makeSVG('circle', {\n				cx: p1.x, cy: p1.y, r: '12', stroke: 'rgb(0, 0, 0)'\n			});\n			var dot2 = makeSVG('circle', {\n				cx: p2.x, cy: p2.y, r: '12', stroke: 'rgb(0, 0, 0)'\n			});\n			svg.appendChild(dot1);\n			svg.appendChild(dot2);\n\n			svg.appendChild(makeSVG('g'));\n\n			this.$el.append($(svg));\n  		},\n\n		_dotPosition: function(string, fret) {\n			var fretDistance = (this._fretboardWidth - this._fretWidth) / 14;\n			var stringDistance = (this._fretboardHeight - this._stringWidth) / 5;\n			var x = 0.5 * this._nutWidth + (fret - 0.5) * fretDistance;\n			var y = 0.5 * this._stringWidth + string * stringDistance;\n			return { x: x, y: y };\n		},\n\n		_dotColor: function(degree) {\n			return [ 'red', 'brown', 'aqua', 'green', 'blue', 'orange',\n					 'black', 'darkorchid', 'darkgreen', 'yellow',\n					 'palevioletred', 'springgreen' ][degree];\n		},\n\n		_setData: function(data) {\n			var self = this;\n			var vis = d3.select('svg g');\n			var sel = vis.selectAll('circle').data(data, function(d) {\n				return d[0] * 24 + d[1];\n			});\n			\n			sel\n			.transition()\n			.duration(1000)\n			.attr(\"cx\", function(d) { return self._dotPosition(d[0],d[1]).x; })\n	 		.attr(\"cy\", function(d) { return self._dotPosition(d[0],d[1]).y; })\n	 		.style(\"fill\", function(d) { return d[2] ? d[2] : '#000'; });\n\n			sel.exit()\n			.transition()\n			.duration(1000)\n			.style('opacity', 0)\n			.remove();\n\n			sel.enter()\n			.append('circle')\n			.style(\"fill\", function(d) { return d[2] ? d[2] : '#000'; })\n			.attr('opacity', 0)\n			.attr(\"cx\", function(d) { return self._dotPosition(d[0],d[1]).x; })\n	 		.attr(\"cy\", function(d) { return self._dotPosition(d[0],d[1]).y; })\n			.attr(\"r\", 20)\n			.transition()\n			.duration(1000)\n			.style(\"opacity\", 1)\n			.attr(\"class\", \"note\");\n		},\n\n		showKeyDegrees: function(key, degrees) {\n			if (key == null)\n				key = 0;\n			if (degrees == null)\n				degrees = [ ];\n			var data = [ ];\n			var degreeSet = { };\n			for (var i = 0; i < degrees.length; ++i) {\n				var note = (key + degrees[i]) % 12;\n				degreeSet[note] = 1;\n			}\n			\n			for (var string = 0; string < 6; ++string) {\n				for (var fret = 0; fret < 15; ++fret) {\n					var note = (offsets[string] + fret) % 12;\n					if (degreeSet[note]) {\n						var color = this._dotColor(((offsets[string] + fret) + 12 - key) % 12)\n						data.push([ string, fret, color ]);\n					}\n				}\n			}\n\n			this._setData(data);\n		},\n\n		showDots: function(dots) {\n			if (dots == null)\n				dots = [ ];\n			if (dots.length == 2 && typeof dots[0] == 'number')\n				dots = [ [ dots[0], dots[1] ] ];\n			this._setData(dots);\n		},\n\n		reset: function() {\n			showKeyDegrees();\n		}\n    });\n}());",
+			"file": "public/js/views/fretboard.js",
+			"file_size": 4872,
+			"file_write_time": 1379469053000000,
+			"settings":
+			{
+				"buffer_size": 4864,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"settings":
 			{
 				"buffer_size": 0,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/greg/code/notequiz.js",
+			"settings":
+			{
+				"buffer_size": 827,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 265 files for \"showDots\"\n\n/Users/greg/gitclients/fretboarder/public/js/freeplay.js:\n   18  		keysDropdown.on('selectionChanged', function(key) {\n   19  			_selectedKey = key;\n   20: 			fretboard.showDots(_selectedKey, _selectedDegrees);\n   21  		});\n   22  \n   ..\n   45  		degreesDropdown.on('selectionChanged', function(degrees) {\n   46  			_selectedDegrees = degrees;\n   47: 			fretboard.showDots(_selectedKey, _selectedDegrees);\n   48  		});\n   49  \n   50: 		fretboard.showDots(_selectedKey, _selectedDegrees);\n   51  	};\n   52  }());\n\n/Users/greg/gitclients/fretboarder/public/js/intervalQuiz.js:\n    9  		$('#headerContainer').empty();\n   10  		$('#footerContainer').empty();\n   11: 		app.fretboard.showDots();\n   12  \n   13  		setInterval(function() {\n\n/Users/greg/gitclients/fretboarder/public/js/views/fretboard.js:\n  151  \n  152  		reset: function() {\n  153: 			showDots();\n  154  		}\n  155      });\n\n5 matches across 3 files\n\n\nSearching 265 files for \"showFreeplay\"\n\n/Users/greg/gitclients/fretboarder/public/js/freeplay.js:\n    6  	var _selectedDegrees = [ 0 ];\n    7  \n    8: 	app.showFreeplay = function() {\n    9  		var fretboard = app.fretboard;\n   10  		$('#footerContainer').empty();\n\n/Users/greg/gitclients/fretboarder/public/js/index.js:\n   13  			switch ($(this).parent().index()) {\n   14  				case 0:\n   15: 				    app.showFreeplay();\n   16  				    break;\n   17  				case 1:\n   ..\n   21  		});\n   22  \n   23: 		app.showFreeplay();\n   24  	});\n   25  \n\n3 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 1510,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
 			}
 		},
 		{
@@ -294,7 +341,35 @@
 			"file": "public/js/index.js",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 660,
+=======
+				"buffer_size": 607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/freeplay.js",
+			"settings":
+			{
+				"buffer_size": 1667,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/intervalQuiz.js",
+			"settings":
+			{
+				"buffer_size": 1600,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/common.js",
+			"settings":
+			{
+				"buffer_size": 318,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 				"line_ending": "Unix"
 			}
 		},
@@ -303,6 +378,7 @@
 			"settings":
 			{
 				"buffer_size": 325,
+<<<<<<< HEAD
 				"line_ending": "Unix"
 			}
 		},
@@ -327,6 +403,8 @@
 			"settings":
 			{
 				"buffer_size": 1600,
+=======
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 				"line_ending": "Unix"
 			}
 		}
@@ -435,9 +513,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"makesvg",
 			"x",
 			"fretboarder",
+=======
+			"root",
+			"_offsets",
+			"offsets",
+			"_offsets",
+			"offsets",
+			"showFreeplay",
+			"showDots",
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 			"dotPosition",
 			"_",
 			"fretboardHeight",
@@ -544,6 +632,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"showKeyDegrees"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -554,7 +643,11 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 0,
+=======
+			"selected": 9,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 			"sheets":
 			[
 				{
@@ -666,15 +759,24 @@
 					"file": "public/index.html",
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 2514,
+=======
+						"buffer_size": 2413,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								2006,
 								2006
+=======
+								1303,
+								1303
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 							]
 						],
 						"settings":
@@ -684,7 +786,11 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 249.0,
+=======
+						"translation.y": 31.0,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -701,8 +807,13 @@
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								0,
 								0
+=======
+								883,
+								883
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 							]
 						],
 						"settings":
@@ -799,13 +910,18 @@
 					"buffer": 9,
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 2779,
+=======
+						"buffer_size": 4864,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								285,
 								285
 							]
@@ -837,6 +953,10 @@
 							[
 								392,
 								392
+=======
+								288,
+								288
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 							]
 						],
 						"settings":
@@ -855,7 +975,10 @@
 					"file": "public/css/index.css",
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 325,
+=======
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -868,7 +991,33 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/Users/greg/code/notequiz.js",
+					"settings":
+					{
+						"buffer_size": 827,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -878,19 +1027,136 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "public/js/noteNameQuiz.js",
+					"buffer": 10,
 					"settings":
 					{
-						"buffer_size": 876,
+						"buffer_size": 1510,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										205,
+										213
+									],
+									[
+										400,
+										408
+									],
+									[
+										482,
+										490
+									],
+									[
+										714,
+										722
+									],
+									[
+										881,
+										889
+									],
+									[
+										1103,
+										1115
+									],
+									[
+										1351,
+										1363
+									],
+									[
+										1448,
+										1460
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								1112,
+								1112
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 578.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"settings":
+					{
+						"buffer_size": 2779,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+<<<<<<< HEAD
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+=======
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+<<<<<<< HEAD
+					"file": "public/js/noteNameQuiz.js",
+					"settings":
+					{
+						"buffer_size": 876,
+=======
+					"file": "public/js/index.js",
+					"settings":
+					{
+						"buffer_size": 607,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+<<<<<<< HEAD
 								852,
 								852
+=======
+								600,
+								600
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 							]
 						],
 						"settings":
@@ -907,23 +1173,40 @@
 				},
 				{
 					"buffer": 13,
+<<<<<<< HEAD
 					"file": "/Users/gpascale/gitclients/combinator-website/combinator-website.sublime-project",
 					"settings":
 					{
 						"buffer_size": 45,
+=======
+					"file": "public/js/freeplay.js",
+					"settings":
+					{
+						"buffer_size": 1667,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								34,
 								34
+=======
+								624,
+								624
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 							]
 						],
 						"settings":
 						{
+<<<<<<< HEAD
 							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+=======
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -934,6 +1217,11 @@
 				{
 					"buffer": 14,
 					"file": "public/js/intervalQuiz.js",
+<<<<<<< HEAD
+					"settings":
+					{
+						"buffer_size": 1600,
+=======
 					"settings":
 					{
 						"buffer_size": 1600,
@@ -943,13 +1231,77 @@
 						"selection":
 						[
 							[
-								404,
-								278
+								1284,
+								1284
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 75.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "public/js/common.js",
+					"settings":
+					{
+						"buffer_size": 318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								297,
+								297
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "public/css/index.css",
+					"settings":
+					{
+						"buffer_size": 325,
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+<<<<<<< HEAD
+								404,
+								278
+=======
+								309,
+								309
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
+							]
+						],
+						"settings":
+						{
+<<<<<<< HEAD
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+=======
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1006,6 +1358,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"noten",
 				"public/js/noteNameQuiz.js"
 			],
@@ -1028,34 +1381,95 @@
 			[
 				"index.",
 				"public/js/index.js"
+=======
+				"inter",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"index",
+				"public/css/index.css"
+			],
+			[
+				"common",
+				"public/js/common.js"
+			],
+			[
+				"interva",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"comon",
+				"public/js/common.js"
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 			],
 			[
 				"fretbo",
 				"public/js/views/fretboard.js"
 			],
 			[
+				"inde",
+				"public/index.html"
+			],
+			[
 				"index.c",
 				"public/css/index.css"
 			],
 			[
-				"dropdo",
-				"public/templates/dropdown.tmpl"
+				"q",
+				"public/js/intervalQuiz.js"
 			],
 			[
 				"dropd",
 				"public/js/views/dropdown.js"
 			],
 			[
+<<<<<<< HEAD
 				"drop",
 				"public/js/views/dropdown.js"
 			],
 			[
 				"inde",
 				"public/js/index.js"
+=======
+				"quiz",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"index.",
+				"public/index.html"
+			],
+			[
+				"int",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"interval",
+				"public/js/intervalQuiz.js"
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 			],
 			[
 				"",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"interv",
+				"public/js/intervalQuiz.js"
+			],
+			[
+				"freepl",
+				"public/js/freeplay.js"
+			],
+			[
+				"dropdo",
+				"public/templates/dropdown.tmpl"
+			],
+			[
+				"fretb",
 				"public/js/views/fretboard.js"
+			],
+			[
+				"drop",
+				"public/js/views/dropdown.js"
 			],
 			[
 				"index.j",
@@ -1488,6 +1902,7 @@
 			[
 				"clipboard",
 				"addons/userscripts/clipboard.js"
+<<<<<<< HEAD
 			],
 			[
 				"page",
@@ -1516,6 +1931,8 @@
 			[
 				"clips-view",
 				"src/www/js/views/clips-view.js"
+=======
+>>>>>>> 30e92f96d4d3244e7ec626b2113719c1ddd908c1
 			]
 		],
 		"width": 0.0
